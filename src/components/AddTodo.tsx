@@ -1,4 +1,5 @@
 import { useState, ChangeEvent, FormEvent} from 'react';
+import "./index.css";
 
 export type TodoType = {
   todoName: string;
@@ -19,15 +20,17 @@ export default function AddTodo({ todos, setTodos }: AddTodoProps) {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setTodos([...todos, { todoName: todo }]);
-    setTodo("");
+    if(todo.length > 0) {
+      setTodos([...todos, { todoName: todo }]);
+      setTodo("");
+    }
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className='todo-form-input'>
+      <form className='todo-form' onSubmit={handleSubmit}>
         <input type='text' value={todo} onChange={handleChange} placeholder='add todo'/>
-        <button>Add</button>
+        <button className='add-button'>Add</button>
       </form>
     </div>
   )

@@ -7,11 +7,11 @@ type OneTodoProps = {
 
 export default function OneTodo({ todo, deleteTodo }: OneTodoProps) {
   return (
-    <div>
+    <div className="one-todo">
         <div>
           {todo.todoName} 
         </div>
-        <button onClick={() => deleteTodo(todo)}>
+        <button className="delete-button" onClick={() => deleteTodo(todo)}>
           X
         </button>
     </div>

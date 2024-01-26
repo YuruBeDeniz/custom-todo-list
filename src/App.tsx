@@ -2,6 +2,7 @@ import { useState } from 'react';
 import AddTodo from './components/AddTodo';
 import Todos from './components/Todos';
 import { TodoType } from './components/AddTodo';
+import "./components/index.css";
 
 function App() {
   const [todos, setTodos] = useState<TodoType[]>([]);
@@ -11,10 +12,10 @@ function App() {
   }
 
   return (
-    <>
+    <div className='todo-card'>
       <AddTodo setTodos={setTodos} todos={todos} />
       <Todos todos={todos} deleteTodo={deleteTodo} />
-    </>
+    </div>
   );
 }
 
