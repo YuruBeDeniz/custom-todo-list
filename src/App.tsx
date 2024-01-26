@@ -1,36 +1,21 @@
-import { useState, ChangeEvent, FormEvent} from 'react';
-import ToDos from './components/ToDos';
-
-export type TodoType = {
-  todoName: string;
-}
-
+import { useState } from 'react';
+import AddTodo from './components/AddTodo';
+import Todos from './components/Todos';
+import { TodoType } from './components/AddTodo';
 
 function App() {
-  const [todo, setTodo] = useState<string>("");
   const [todos, setTodos] = useState<TodoType[]>([]);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setTodo(e.target.value);
-    console.log(todo)
-  };
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setTodos([...todos, { todoName: todo }]);
-    setTodo("");
+  const deleteTodo = (todoToDelete: TodoType) => {
+    setTodos(prevTodos => prevTodos.filter(todo => todo !== todoToDelete));
   }
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <label>To Do </label>
-        <input type='text' value={todo} onChange={handleChange} placeholder='add todo'/>
-        <button>Add</button>
-      </form>
-      <ToDos todos={todos} />
+      <AddTodo setTodos={setTodos} todos={todos} />
+      <Todos todos={todos} deleteTodo={deleteTodo} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

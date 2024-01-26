@@ -1,15 +1,18 @@
-import { TodoType } from "../App"
+import { TodoType } from "./AddTodo";
+import "./Index.css";
+import OneTodo from "./OneTodo";
 
 type TodosType = {
   todos: TodoType[];
+  deleteTodo: (todoToDelete: TodoType) => void;
 }  
 
-export default function ToDos({ todos }: TodosType) {
-    console.log(todos)
+export default function Todos({ todos, deleteTodo }: TodosType) {
+    
   return (
     <div>
         {todos.map((todo: TodoType, index: number) => (
-             <li key={index}>{todo.todoName}</li>
+             <OneTodo key={index} todo={todo} deleteTodo={deleteTodo} />
         )
         )}
     </div>
