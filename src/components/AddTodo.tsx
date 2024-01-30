@@ -15,7 +15,6 @@ export default function AddTodo({ todos, setTodos }: AddTodoProps) {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setTodo(e.target.value);
-    console.log(todo)
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
